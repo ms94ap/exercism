@@ -1,17 +1,18 @@
+module BookKeeping
+  VERSION = 3
+end
 
-module Hamming
-  extend self 
+class Hamming
 
-  VERSION = 1
+	def self.compute(str1, str2)
+	  return 0 if str1 == str2
+	  raise ArgumentError.new if str1.length != str2.length
+	  str1 = str1.split('')
+	  str2 = str2.split('')
 
-  def compute(stra, strb)
-    raise ArgumentError unless stra.size == strb.size
+	  mutations = str1.each_with_index.select { |l, i| l != str2[i] }
 
-    strb.chars.tap do |strb_chars|
-      return stra.chars.each.with_index.reduce(0) do |dist, (char, idx)|
-        dist += 1 if char != strb_chars[idx]
-        dist
-      end
-    end
-  end
+	  return mutations.length
+	end
+
 end
