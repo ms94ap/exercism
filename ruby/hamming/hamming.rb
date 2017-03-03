@@ -1,6 +1,6 @@
 
 module Hamming
-  extend self
+  extend self 
 
   VERSION = 1
 
